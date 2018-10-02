@@ -1,7 +1,38 @@
 .input-group-addon{
-  width: 15%;
+  width: 60px;
 }
 
 .input-group {
     margin-bottom: 10px;
+}
+.menu {
+    margin-top: 10px;
+    width: 100%;
+    background: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #e0e0e0e0;
+    border-radius: 3px;
+}
+
+.mt-2{
+  margin-top: 2rem!important;
+}
+
+.table td, .table th{
+  padding-left: 3px !important;
+  padding-right: 2px !important;
+}
+
+.t-description{
+  font-size: 90%;
+}
+.t-price{
+
+}
+
+@media only screen and (max-width: 768px) {
+    .heading{
+      font-size: 20px;
+    }
 }

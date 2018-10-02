@@ -14,6 +14,14 @@ var converRates = {
   },
 }
 
+var priceList = [
+  {
+    description: "Snorkelling in Kuta",
+    price: 10000, // in IDR
+    max: 15000,
+  },
+];
+
 
 $( document ).ready(function() {
 
@@ -24,8 +32,8 @@ $( document ).ready(function() {
         if(input && input!=num){
           $('#idr').val(num);
         }
-        $('#usd').val(covert('idr','usd', input));
-        $('#bdt').val(covert('idr','bdt', input));
+        $('#usd').val(convert('idr','usd', input));
+        $('#bdt').val(convert('idr','bdt', input));
     });
 
     // convert from BDT
@@ -35,8 +43,8 @@ $( document ).ready(function() {
         if(input && input!=num){
           $('#bdt').val(num);
         }
-        $('#usd').val(covert('bdt','usd', input));
-        $('#idr').val(covert('bdt','idr', input));
+        $('#usd').val(convert('bdt','usd', input));
+        $('#idr').val(convert('bdt','idr', input));
     });
 
     // convert from USD
@@ -46,9 +54,33 @@ $( document ).ready(function() {
         if(input && input!=num){
           $('#usd').val(num);
         }
-        $('#bdt').val(covert('usd','bdt', input));
-        $('#idr').val(covert('usd','idr', input));
+        $('#bdt').val(convert('usd','bdt', input));
+        $('#idr').val(convert('usd','idr', input));
     });
+
+    $('#btn-price-list').click(function() {
+        $('#calculator').hide();
+        $('#price-list').slideDown();
+    });
+
+    $('#btn-calculator').click(function() {
+        $('#price-list').hide();
+        $('#calculator').slideDown();
+    });
+
+    // generate the table
+    (function(){
+      let tableString = "";
+      for(let item of priceList){
+        let row = '<tr><td class="t-description" scope="col">'+item.description+'</td>'
+                  +'<td class="t-price" scope="col">'+item.price.toLocaleString()+'</td>'
+                  +'<td class="t-price" scope="col">'+parseInt(convert('idr','bdt',item.price)).toLocaleString()+'</td>'
+                  +'<td class="t-price" scope="col">'+convert('idr','usd',item.price).toLocaleString()+'</td>'
+                  +'</tr>';
+        tableString = tableString+row;
+      }
+      $('.price-table-body').html(tableString);
+    })();
 
 
 });
@@ -59,7 +91,7 @@ function getNumber(input){
   return Number(input.replace(/[^0-9\.]/g,''));
 }
 
-function covert(from, to, input){
+function convert(from, to, input){
   var n = Number(converRates[from][to]*getNumber(input));
   return parseFloat(n).toFixed(2);
 }

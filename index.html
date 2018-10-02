@@ -17,8 +17,16 @@
 <body class="bg-light">
     <div class="container">
         <div class="row">
+          <div class="col-md-6 mx-auto">
+            <div class="menu text-center">
+              <button id="btn-calculator" type="button" class="btn btn-outline-info">Calculator</button>
+              <button id="btn-price-list" type="button" class="btn btn-outline-info">Price List</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
             <div class="col-md-6 mx-auto">
-                <div class="card card-body text-center mt-5">
+                <div id="calculator" class="card card-body text-center mt-2">
                     <h1 class="heading display-5 pb-3 text-secondary">Currency Converter</h1>
                     <form id="converter-form">
                         <div class="form-group">
@@ -36,16 +44,22 @@
                             </div>
                         </div>
                     </form>
-
-                    <!-- <div id="results" class="pt-4">
-                        <h5 class="text-secondary">Results</h5>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">&euro;</span>
-                                <input type="number" class="form-control" id="value" disabled>
-                            </div>
-                        </div>
-                    </div> -->
+                </div>
+                <div id="price-list" class="card card-body text-center mt-2" style="display:none;">
+                    <h1 class="heading display-5 pb-3 text-secondary">Price list</h1>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Description</th>
+                          <th scope="col">IDR</th>
+                          <th scope="col">BDT</th>
+                          <th scope="col">USD</th>
+                        </tr>
+                      </thead>
+                      <tbody class="price-table-body">
+                
+                      </tbody>
+                    </table>
                 </div>
             </div>
         </div>
