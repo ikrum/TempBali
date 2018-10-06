@@ -1,4 +1,2 @@
-# Currency_Converter
-HTML, Bootstrap 4, Javascript, Ajax
-
-https://codepen.io/zkairys/pen/jLOxmp
+# Simple APP for my Bali Travel
+To help me calculate the currency and other minor stuffs.

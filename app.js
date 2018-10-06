@@ -17,8 +17,27 @@ var converRates = {
 var priceList = [
   {
     description: "Snorkelling in Kuta",
-    price: 10000, // in IDR
-    max: 15000,
+    price: '100000', // in IDR
+  },
+  {
+    description: "Rafting",
+    price: '400000',
+  },
+  {
+    description: "Car per hour",
+    price: '50000',
+  },
+  {
+    description: "Nasi goreng, Nasi Ayam etc",
+    price: '30000-60000',
+  },
+  {
+    description: "Hotel boy tips",
+    price: '20000-35000',
+  },
+  {
+    description: "Singer tips",
+    price: '35000-70000',
   },
 ];
 
@@ -72,10 +91,21 @@ $( document ).ready(function() {
     (function(){
       let tableString = "";
       for(let item of priceList){
+        let priceArray = item.price.split('-');
+        let priceOne = priceArray[0];
+        let priceTwo = priceArray[1];
+        let bdPrice = parseInt(convert('idr','bdt',priceOne)).toLocaleString();
+        let usPrice = convert('idr','usd',priceOne).toLocaleString();
+
+        if(priceTwo){
+          bdPrice = bdPrice + ' - ' + parseInt(convert('idr','bdt',priceTwo)).toLocaleString();
+          usPrice = usPrice + ' - ' + convert('idr','usd',priceTwo).toLocaleString();
+        }
+
         let row = '<tr><td class="t-description" scope="col">'+item.description+'</td>'
                   +'<td class="t-price" scope="col">'+item.price.toLocaleString()+'</td>'
-                  +'<td class="t-price" scope="col">'+parseInt(convert('idr','bdt',item.price)).toLocaleString()+'</td>'
-                  +'<td class="t-price" scope="col">'+convert('idr','usd',item.price).toLocaleString()+'</td>'
+                  +'<td class="t-price" scope="col">'+bdPrice+'</td>'
+                  +'<td class="t-price" scope="col">'+usPrice+'</td>'
                   +'</tr>';
         tableString = tableString+row;
       }
@@ -85,6 +115,7 @@ $( document ).ready(function() {
 
 });
 
+
 function getNumber(input){
   if(typeof input == 'number') return input;
   if(typeof input != 'string') return 0;
@@ -93,7 +124,9 @@ function getNumber(input){
 
 function convert(from, to, input){
   var n = Number(converRates[from][to]*getNumber(input));
-  return parseFloat(n).toFixed(2);
+  n = parseFloat(n).toFixed(2);
+  if(n == 0.0) return 0;
+  return n;
 }
 
 
