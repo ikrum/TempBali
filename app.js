@@ -46,7 +46,7 @@ $( document ).ready(function() {
 
     // convert from IDR
     $('#idr').keyup(function() {
-        var input = $(this).val();
+        var input = $(this).val().replace('.','');
         var num = getNumber(input);
         if(input && input!=num){
           $('#idr').val(num);
